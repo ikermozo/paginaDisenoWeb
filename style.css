@@ -1,6 +1,4 @@
-/* ===== VARIABLES CSS =====
-    Colores del proyecto Momentum
-*/
+/* ===== VARIABLES CSS ===== */
 :root {
     --color-principal: #011f3e;
     --color-apoyo-1: #5A6C7D;
@@ -10,26 +8,47 @@
     --color-fondo: #ECF0F1;
     --color-texto: #2C3E50;
 }
-/* ============================================== */
-/* EJERCICIO 6.1: Regla global para multimedia    */
-/* ============================================== */
-/* 
-    Esta regla asegura que todas las imágenes y vídeos se escalen correctamente
-    dentro de su contenedor sin deformarse ni sobresalir.
-    - max-width: 100%, la imagen o vídeo nunca superará el ancho del contenedor
-    - height: auto, mantiene la proporción original
-    - display: block,elimina el espacio extra inferior que tienen los inline elements
-*/
-img,video {
+
+/* ===== SELECTOR DE IDIOMAS ===== */
+#selector-idiomas {
+    display: flex;
+    gap: 0.5rem;
+    margin-right: 1rem;
+}
+
+#selector-idiomas button {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#selector-idiomas button:hover {
+    background-color: rgba(212, 175, 55, 0.2);
+    border-color: var(--color-dorado);
+}
+
+#selector-idiomas button.active {
+    background-color: var(--color-dorado);
+    color: var(--color-principal);
+    border-color: var(--color-dorado);
+}
+
+/* ===== REGLA GLOBAL MULTIMEDIA ===== */
+img,
+video {
     max-width: 100%;
     height: auto;
     display: block;
 }
-/* ============================================== */
-/* FIN EJERCICIO 6.1                              */
-/* ============================================== */
 
-/* ===== ESTILOS BASE (MÓVIL) ===== */
+/* ===== ESTILOS BASE ===== */
 body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
@@ -37,12 +56,17 @@ body {
     background-color: var(--color-gris-claro);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
 }
 
-/* ===== NAVBAR (MÓVIL) ===== */
+/* ===== NAVBAR ===== */
 .navbar {
     background-color: var(--color-principal) !important;
     padding: 1rem;
@@ -58,7 +82,6 @@ h1, h2, h3, h4, h5, h6 {
     color: white !important;
 }
 
-/* Menú hamburguesa para móvil */
 .hamburger {
     display: flex;
     flex-direction: column;
@@ -84,7 +107,6 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s linear;
 }
 
-/* Contenedor del menú de navegación en móvil */
 .navbar-nav-container {
     display: none;
     position: absolute;
@@ -127,7 +149,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: rgba(212, 175, 55, 0.3);
 }
 
-/* ===== TÍTULOS DE SECCIÓN (MÓVIL) ===== */
+/* ===== TÍTULOS DE SECCIÓN ===== */
 .section-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
@@ -138,7 +160,7 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 0.75rem;
 }
 
-/* ===== BOTONES CTA (MÓVIL) ===== */
+/* ===== BOTONES CTA ===== */
 .btn-cta {
     background-color: var(--color-dorado);
     color: var(--color-principal);
@@ -163,7 +185,7 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
 }
 
-/* ===== FOOTER (MÓVIL) ===== */
+/* ===== FOOTER ===== */
 footer {
     background-color: var(--color-principal);
     color: white;
@@ -225,49 +247,20 @@ footer {
     font-size: 0.9rem;
 }
 
-/* ===== HERO SECTION (MÓVIL) ===== */
-/* ============================================== */
-/* EJERCICIO 6.2: Hero Section con background-image */
-/* =============================================== */
-/*
-    He elegido background-size: cover
-
-    Es la mejor opción para hero sections porque:
-        - Garantiza que la imagen siempre cubre todo el contenedor
-        - No se deforma
-        - Se recorta inteligentemente si es necesario
-        - Ofrece una experiencia visual profesional en todos los dispositivos
-
-    Complementado con background-position: center se asegura que 
-        la parte más importante de la imagen siempre sea visible
-*/
+/* ===== HERO SECTION ===== */
 .hero {
-    /* Imagen de fondo adaptativa */
     background-image: linear-gradient(rgba(0, 32, 64, 0.85), rgba(90, 108, 125, 0.85)), url('images/imagenHero.png');
-    
-    /* COVER: La imagen cubre todo el contenedor manteniendo proporciones */
     background-size: cover;
-    
-    /* *Centra la imagen para que la parte más importante siempre se vea */
     background-position: center;
-    
-    /* Fija la imagen al hacer scroll */
     background-attachment: scroll;
-    
-    /* Evita que la imagen se repita si el contenedor es más grande */
     background-repeat: no-repeat;
-    
     color: white;
     padding: 3rem 1.5rem;
     text-align: center;
     min-height: 350px;
-    
-    /* Asegura que el contenido sea legible sobre cualquier fondo */
     position: relative;
 }
-/* ============================================== */
-/* FIN EJERCICIO 6.2                              */
-/* ============================================== */
+
 .hero h2 {
     font-weight: 700;
     font-size: 2rem;
@@ -282,7 +275,7 @@ footer {
     opacity: 0.95;
 }
 
-/* ===== TARJETAS (MÓVIL) ===== */
+/* ===== TARJETAS ===== */
 .tarjeta {
     background: white;
     padding: 1.5rem;
@@ -333,7 +326,7 @@ footer {
     left: 0;
 }
 
-/* ===== PROCESO (MÓVIL) ===== */
+/* ===== PROCESO ===== */
 #proceso {
     background: white;
     padding: 1.5rem;
@@ -356,7 +349,7 @@ footer {
     color: var(--color-principal);
 }
 
-/* ===== TESTIMONIOS (MÓVIL) ===== */
+/* ===== TESTIMONIOS ===== */
 .testimonios {
     background-color: white;
     padding: 2rem 1.5rem;
@@ -393,7 +386,7 @@ footer {
     color: var(--color-apoyo-1);
 }
 
-/* ===== CTA SECTION (MÓVIL) ===== */
+/* ===== CTA SECTION ===== */
 .cta-section {
     background-color: var(--color-principal);
     color: white;
@@ -414,7 +407,7 @@ footer {
     margin-bottom: 1.5rem;
 }
 
-/* ===== FORMULARIO (MÓVIL) ===== */
+/* ===== FORMULARIO ===== */
 .contacto-card {
     background: white;
     padding: 1.5rem;
@@ -466,7 +459,7 @@ footer {
     box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
-/* ===== MAPA (MÓVIL) ===== */
+/* ===== MAPA ===== */
 .mapa-container {
     border-radius: 12px;
     overflow: hidden;
@@ -481,7 +474,7 @@ footer {
     border: 0;
 }
 
-/* ===== TABLA (MÓVIL) ===== */
+/* ===== TABLA ===== */
 .tabla-contacto {
     background: white;
     padding: 1.5rem;
@@ -517,7 +510,8 @@ th {
     font-weight: 600;
 }
 
-th, td {
+th,
+td {
     padding: 0.75rem 0.5rem;
     text-align: left;
     border: 1px solid #ddd;
@@ -537,19 +531,14 @@ tfoot {
     font-weight: 400;
 }
 
-
-/* ============================================== */
 /* ===== MEDIA QUERIES: TABLETAS (481px+) ===== */
-/* ============================================== */
 @media (min-width: 481px) {
-    /* EJERCICIO 6.2: Background adaptativo para tablet */
     .hero {
         background-image: linear-gradient(rgba(0, 32, 64, 0.85), rgba(90, 108, 125, 0.85)), url('images/imagenHero.png');
         min-height: 400px;
         padding: 4rem 2rem;
     }
-    /* FIN EJERCICIO 6.2 para tablet */
-    
+
     .hero h2 {
         font-size: 2.5rem;
     }
@@ -558,52 +547,42 @@ tfoot {
         font-size: 1.2rem;
     }
 
-    /* Botones CTA */
     .btn-cta {
         width: auto;
         padding: 0.85rem 2rem;
     }
 
-    /* Footer */
     footer {
         padding: 2.5rem 2rem;
     }
 
-    /* Formulario */
     .contacto-card {
         padding: 2rem;
     }
 
-    /* Tabla */
     table {
         font-size: 0.9rem;
     }
 
-    th, td {
+    th,
+    td {
         padding: 0.85rem 0.75rem;
     }
 
-    /* Mapa */
     .mapa-container iframe {
         height: 400px;
     }
 }
 
-
-/* ================================================ */
 /* ===== MEDIA QUERIES: ESCRITORIO (769px+) ===== */
-/* ================================================ */
 @media (min-width: 769px) {
-    /* EJERCICIO 6.2: Background adaptativo para desktop */
     .hero {
         background-image: linear-gradient(rgba(0, 32, 64, 0.85), rgba(90, 108, 125, 0.85)), url('images/imagenHero.png');
         min-height: 500px;
         padding: 6rem 2rem;
         background-attachment: fixed;
     }
-    /* FIN EJERCICIO 6.2 para desktop */
 
-    /* ===== NAVBAR (ESCRITORIO) ===== */
     .navbar {
         padding: 1.5rem 3rem;
     }
@@ -613,12 +592,10 @@ tfoot {
         letter-spacing: 3px;
     }
 
-    /* Ocultar hamburguesa en escritorio */
     .hamburger {
         display: none;
     }
 
-    /* Mostrar menú de navegación en línea */
     .navbar-nav-container {
         display: flex !important;
         position: static;
@@ -644,7 +621,6 @@ tfoot {
         transform: translateY(-2px);
     }
 
-    /* ===== TÍTULOS DE SECCIÓN (ESCRITORIO) ===== */
     .section-title {
         font-size: 2rem;
         margin-bottom: 2rem;
@@ -652,13 +628,11 @@ tfoot {
         padding-left: 1rem;
     }
 
-    /* ===== BOTONES CTA (ESCRITORIO) ===== */
     .btn-cta {
         padding: 1rem 2.5rem;
         font-size: 1.1rem;
     }
 
-    /* ===== FOOTER (ESCRITORIO) ===== */
     footer {
         padding: 3rem 2rem 2rem 2rem;
     }
@@ -672,7 +646,6 @@ tfoot {
         padding-top: 2rem;
     }
 
-    /* ===== HERO (ESCRITORIO) ===== */
     .hero {
         padding: 6rem 2rem;
         min-height: 500px;
@@ -688,7 +661,6 @@ tfoot {
         margin-bottom: 2rem;
     }
 
-    /* ===== TARJETAS (ESCRITORIO) ===== */
     .tarjeta {
         padding: 2rem;
         margin-bottom: 0;
@@ -708,7 +680,6 @@ tfoot {
         font-size: 1rem;
     }
 
-    /* ===== PROCESO (ESCRITORIO) ===== */
     #proceso {
         padding: 2rem;
     }
@@ -721,7 +692,6 @@ tfoot {
         font-size: 1.05rem;
     }
 
-    /* ===== TESTIMONIOS (ESCRITORIO) ===== */
     .testimonios {
         padding: 3rem 2rem;
         margin: 3rem 0;
@@ -746,7 +716,6 @@ tfoot {
         font-size: 0.9rem;
     }
 
-    /* ===== CTA SECTION (ESCRITORIO) ===== */
     .cta-section {
         padding: 4rem 2rem;
         margin: 3rem 0;
@@ -762,7 +731,6 @@ tfoot {
         margin-bottom: 2rem;
     }
 
-    /* ===== FORMULARIO (ESCRITORIO) ===== */
     .contacto-card {
         padding: 2.5rem;
     }
@@ -771,12 +739,10 @@ tfoot {
         font-size: 1rem;
     }
 
-    /* ===== MAPA (ESCRITORIO) ===== */
     .mapa-container iframe {
         height: 450px;
     }
 
-    /* ===== TABLA (ESCRITORIO) ===== */
     .tabla-contacto {
         padding: 2.5rem;
     }
@@ -790,7 +756,8 @@ tfoot {
         font-size: 0.9rem;
     }
 
-    th, td {
+    th,
+    td {
         padding: 1rem;
     }
 }
