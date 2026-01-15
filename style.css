@@ -761,3 +761,99 @@ tfoot {
         padding: 1rem;
     }
 }
+
+/* ===== REPRODUCTOR DE AUDIO ===== */
+.audio-player-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(1, 31, 62, 0.15);
+    border: 2px solid var(--color-gris-claro);
+    transition: all 0.3s ease;
+}
+
+.audio-player-container:hover {
+    border-color: var(--color-dorado);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+}
+
+#audio-momentum {
+    width: 100%;
+    height: 54px;
+    border-radius: 8px;
+    outline: none;
+}
+
+#audio-momentum::-webkit-media-controls-panel {
+    background-color: var(--color-principal);
+    border-radius: 8px;
+}
+
+#audio-momentum::-webkit-media-controls-play-button,
+#audio-momentum::-webkit-media-controls-pause-button {
+    background-color: var(--color-dorado);
+    border-radius: 50%;
+}
+
+#audio-momentum::-webkit-media-controls-current-time-display,
+#audio-momentum::-webkit-media-controls-time-remaining-display {
+    color: var(--color-blanco);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+#audio-momentum::-webkit-media-controls-timeline {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    margin: 0 10px;
+}
+
+#audio-momentum::-webkit-media-controls-volume-slider {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+}
+
+#audio-momentum::-moz-range-track {
+    background-color: var(--color-principal);
+    border-radius: 8px;
+}
+
+#audio-momentum::-moz-range-thumb {
+    background-color: var(--color-dorado);
+    border: none;
+}
+
+.audio-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background-color: var(--color-gris-claro);
+    border-radius: 8px;
+    color: var(--color-apoyo-1);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+}
+
+.audio-info i {
+    color: var(--color-dorado);
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .audio-player-container {
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    #audio-momentum {
+        height: 48px;
+    }
+}
+
+@media (min-width: 769px) {
+    .audio-player-container {
+        padding: 2.5rem;
+    }
+}
