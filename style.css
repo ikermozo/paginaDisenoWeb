@@ -80,7 +80,67 @@ h6 {
     font-size: 1.5rem;
     letter-spacing: 2px;
     color: white !important;
+    display: flex;
+    align-items: center;
+    gap: 0;
 }
+
+/* ===== ANIMACIÓN DEL LOGO (FASE 2) ===== */
+
+/* Requisito 2.2: Definición de @keyframes con 3 estados mínimo */
+@keyframes logoEntrada {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(-180deg);
+        color: var(--color-blanco);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.2) rotate(10deg);
+        color: var(--color-dorado);
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        color: var(--color-dorado);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* Animación sutil continua para el pulso */
+@keyframes logoPulso {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Requisito 2.1: Logo ubicado en el navbar */
+.logo-letter {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-dorado);
+    display: inline-block;
+    /* Requisito 2.3: Aplicación de animation con iteration-count y fill-mode */
+    animation: logoEntrada 1.5s ease-out forwards;
+    animation-fill-mode: forwards;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    color: white;
+    margin-left: 0.1rem;
+}
+
+/* Animación continua sutil en hover */
+.navbar-brand:hover .logo-letter {
+    animation: logoPulso 1s ease-in-out infinite;
+}
+
+/* ===== FIN ANIMACIÓN DEL LOGO ===== */
 
 .hamburger {
     display: flex;
@@ -133,6 +193,9 @@ h6 {
     margin: 0;
 }
 
+/* ===== FASE 1: TRANSICIONES EN NAVEGACIÓN ===== */
+
+/* Requisito 1.1: Feedback de estado con transiciones suaves */
 .navbar-nav .nav-link {
     color: white !important;
     font-weight: 400;
@@ -140,14 +203,22 @@ h6 {
     display: block;
     width: 100%;
     border-radius: 5px;
-    transition: all 0.3s ease;
     text-decoration: none;
+    /* Transición específica para múltiples propiedades */
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
 }
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
     background-color: rgba(212, 175, 55, 0.3);
+    transform: translateX(5px);
+    box-shadow: -4px 0 0 0 var(--color-dorado);
 }
+
+/* ===== FIN FASE 1 ===== */
 
 /* ===== TÍTULOS DE SECCIÓN ===== */
 .section-title {
@@ -170,12 +241,16 @@ h6 {
     font-size: 1rem;
     border: none;
     border-radius: 50px;
-    transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
     text-decoration: none;
     display: inline-block;
     width: 100%;
     text-align: center;
+    /* Transiciones mejoradas */
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
 }
 
 .btn-cta:hover {
@@ -207,14 +282,17 @@ footer {
     color: white;
     text-decoration: none;
     opacity: 0.8;
-    transition: all 0.3s ease;
     display: block;
     margin-bottom: 0.5rem;
+    transition: color 0.3s ease,
+                opacity 0.3s ease,
+                transform 0.3s ease;
 }
 
 .footer-seccion a:hover {
     color: var(--color-dorado);
     opacity: 1;
+    transform: translateX(5px);
 }
 
 .social-links {
@@ -231,7 +309,8 @@ footer {
     border-radius: 50%;
     text-align: center;
     line-height: 40px;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease,
+                transform 0.3s ease;
 }
 
 .social-links a:hover {
@@ -281,10 +360,13 @@ footer {
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
     height: 100%;
     border: 2px solid transparent;
     margin-bottom: 1.5rem;
+    /* Transiciones mejoradas */
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
 }
 
 .tarjeta:hover {
@@ -364,6 +446,13 @@ footer {
     border-left: 4px solid var(--color-dorado);
     height: 100%;
     margin-bottom: 1.5rem;
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.testimonio:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .testimonio-texto {
@@ -430,8 +519,9 @@ footer {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
     width: 100%;
+    transition: border-color 0.3s ease,
+                box-shadow 0.3s ease;
 }
 
 .form-control:focus {
@@ -448,8 +538,11 @@ footer {
     font-size: 1rem;
     border: none;
     border-radius: 50px;
-    transition: all 0.3s ease;
     width: 100%;
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
 }
 
 .btn-enviar:hover {
@@ -521,9 +614,12 @@ tbody tr:nth-child(even) {
     background-color: var(--color-gris-claro);
 }
 
+tbody tr {
+    transition: background-color 0.2s ease;
+}
+
 tbody tr:hover {
     background-color: rgba(212, 175, 55, 0.1);
-    transition: background-color 0.2s;
 }
 
 tfoot {
@@ -592,6 +688,14 @@ tfoot {
         letter-spacing: 3px;
     }
 
+    .logo-letter {
+        font-size: 2.5rem;
+    }
+
+    .logo-text {
+        font-size: 2rem;
+    }
+
     .hamburger {
         display: none;
     }
@@ -619,6 +723,7 @@ tfoot {
     .navbar-nav .nav-link:hover,
     .navbar-nav .nav-link.active {
         transform: translateY(-2px);
+        box-shadow: 0 4px 0 0 var(--color-dorado);
     }
 
     .section-title {
@@ -769,7 +874,8 @@ tfoot {
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(1, 31, 62, 0.15);
     border: 2px solid var(--color-gris-claro);
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease,
+                box-shadow 0.3s ease;
 }
 
 .audio-player-container:hover {
