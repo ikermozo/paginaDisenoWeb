@@ -55,6 +55,7 @@ momentum/
 ├── index.html              # Página principal (versión Bootstrap)
 ├── contacto.html           # Formulario de contacto
 ├── style.css               # Estilos base compartidos
+├── jquery.js               # Práctica jQuery (Unidad 4)
 └── README.md               # Este archivo
 
 ```
@@ -391,8 +392,114 @@ Se ha convertido el hero section en imagen de fondo CSS:
 
 ---
 
+# Práctica 11 – jQuery Integration Sprint
+
+## Archivos añadidos/modificados
+
+- `jquery.js` — archivo nuevo con todo el código jQuery
+- `index.html` — añadidos CDN de jQuery, jQuery UI y `<script src="jquery.js">`
+- `contacto.html` — añadidos los mismos CDN más el campo `#fecha-consulta` para el datepicker
+
+## CDN incluidos (en `<head>`)
+
+```html
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+```
+
+```html
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<script src="jquery.js"></script>
+```
+
+---
+
+## Misión 1 – Selección de Elementos
+
+**Dónde:** `jquery.js`, bloque Misión 1. Se ejecuta al cargar la página (`$(document).ready`).
+
+**Qué se hace y por qué:**
+
+- `$("h2")` — letter-spacing a todos los títulos de sección. Refuerza la tipografía Montserrat sin tocar el CSS.
+- `$(".tarjeta")` — badge "✓ Verificado" en cada tarjeta de servicio. Añade credibilidad visual de forma dinámica.
+- `$("#hero-titulo")` — primera letra en dorado. Pequeño detalle premium que refuerza la identidad de marca.
+- `$(".testimonio:first")` — selector avanzado `:first` para marcar el testimonio más destacado con un badge.
+- `$("head").append("<style>...")` — selector avanzado que inyecta una regla CSS en el `<head>` para hacer el navbar `sticky` mediante jQuery, de forma que permanezca visible durante todo el scroll.
+
+---
+
+## Misión 2 – Adición y Supresión del DOM
+
+**Dónde:** `index.html`, sección de testimonios. Código en `jquery.js`, bloque Misión 2.
+
+**Qué se hace y por qué:**
+
+Una asesoría inmobiliaria se nutre de la confianza social. Permitir que el usuario publique su propia reseña y elimine las que no le sean relevantes simula una funcionalidad real de gestión de contenido.
+
+- **`.append()`** — se inyecta un formulario de nueva reseña al final de `.testimonios`. Al pulsar "Publicar", se crea una nueva tarjeta de testimonio y se añade al grid con `.append()` + `.fadeIn()`.
+- **`.remove()`** — cada testimonio tiene un botón ✕. Al pulsarlo, la tarjeta hace `.fadeOut()` y luego se elimina del DOM.
+
+**Punto Bonus — evento delegado:**
+
+El listener de eliminar está en el contenedor padre `.testimonios`, no en cada botón. Esto es necesario porque los testimonios creados dinámicamente no existían cuando se cargó la página y no tendrían listener si se registrara directamente sobre ellos.
+
+```js
+$(".testimonios").on("click", ".btn-eliminar-testimonio", function () {
+    $(this).closest(".testimonio").fadeOut(300, function () {
+        $(this).closest(".col-lg-4, .col-md-6, .nueva-resena").remove();
+    });
+});
+```
+
+---
+
+## Misión 3 – Gestión de Eventos
+
+**Dónde:** `jquery.js`, bloque Misión 3. Los tres eventos actúan sobre elementos de `index.html` y `contacto.html`.
+
+**Qué se hace y por qué:**
+
+- **Evento de ratón — `click` en `.tarjeta`:** Al hacer clic en una tarjeta de servicio, aparece un panel desplegable con un enlace directo a la consulta gratuita para ese servicio concreto. Se usa `$(this)` para leer el `h3` de la tarjeta clickada y personalizar el mensaje. Tiene sentido porque el usuario que explora un servicio es el que más probabilidad tiene de contactar.
+
+- **Evento de teclado — `keyup` en `#mensaje`:** Muestra un contador de caracteres en tiempo real bajo el textarea del formulario de contacto. El contador cambia a rojo al superar los 450 caracteres. Es feedback inmediato y útil para el usuario.
+
+- **Tercer evento — `scroll` en `window`:** Detecta qué sección está visible y marca el nav-link correspondiente como activo resaltándolo en dorado. El navbar es sticky (fijado arriba mediante jQuery) para que sea visible en todo momento mientras se hace scroll. El evento también se ejecuta al cargar la página para que "Inicio" aparezca activo desde el primer momento.
+
+---
+
+## Misión 4 – Animaciones y Transiciones
+
+**Dónde:** `jquery.js`, bloque Misión 4. Afecta a `index.html`.
+
+**Qué se hace y por qué:**
+
+- **`.fadeIn()` escalonado en `.testimonio`:** Los tres testimonios aparecen con un retardo incremental de 200ms entre ellos. Crea un efecto de entrada progresivo que llama la atención sin ser intrusivo.
+
+- **`.slideDown()` / `.slideUp()` en pasos del proceso:** Cada `<li>` del proceso es clicable y despliega/colapsa el texto descriptivo del paso. Encaja porque convierte una lista estática en un acordeón interactivo que invita a explorar cada fase.
+
+- **`.animate()` en `.hero-subtitle`:** El subtítulo del hero arranca con `opacity: 0` y `marginTop: 30px` y anima hasta su posición natural. Usa dos propiedades CSS personalizadas (`opacity` y `marginTop`), cumpliendo el requisito de la misión. El efecto de entrada suaviza el impacto visual del hero.
+
+---
+
+## Misión 5 – Plugin jQuery UI: Datepicker
+
+**Dónde:** `contacto.html`, campo `#fecha-consulta`. Inicializado en `jquery.js`, bloque Misión 5.
+
+**Qué se hace y por qué:**
+
+Se añade un campo de fecha al formulario de contacto para que el usuario pueda indicar cuándo prefiere recibir la consulta. Para una asesoría inmobiliaria, gestionar la disponibilidad del cliente desde el primer contacto es clave para optimizar la agenda del equipo.
+
+El datepicker está configurado con:
+- Idioma en español (días y meses)
+- Fecha mínima: hoy (no se pueden seleccionar fechas pasadas)
+- Fecha máxima: 3 meses vista (marco realista de agenda)
+- Animación de entrada `slideDown`
+- Estilos CSS adaptados a la paleta de Momentum (azul oscuro y dorado)
+
+---
+
 ## Autor
 
-**Iker  Mozo**  
+**Iker Mozo**  
 Proyecto realizado para el módulo de Diseño de Interfaces Web  
 Ilerna Online - 2025
